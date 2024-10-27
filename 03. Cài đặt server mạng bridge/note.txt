@@ -1,3 +1,5 @@
+https://devopsedu.vn/courses/devops-for-freshers/lesson/bai-3-cai-dat-ubuntu-server-mang-bridge/
+
 Sau khi cài server Linux:
 
 1. Set ip tĩnh 
