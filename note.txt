@@ -1,0 +1,10 @@
+Elroydevops
+
+Khoá học:
+https://devopsedu.vn/courses/devops-for-freshers/lesson/
+
+OS ubuntu 20.04:
+https://drive.google.com/file/d/1Sufv2BJgdibkS0jQFuLt3y-GX08htfPh/view
+
+VMware workstation
+https://devopsedu.vn/wp-content/uploads/2024/02/vmware-workstation-16.zip
