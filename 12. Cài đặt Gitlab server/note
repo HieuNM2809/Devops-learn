@@ -1,0 +1,28 @@
+https://devopsedu.vn/courses/devops-for-freshers/lesson/bai-12-cai-dat-gitlab-server/
+
+
+1. Tạo máy ảo
+
+2. Cài đặt GitLab Server
+# curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash#
+# sudo apt-get install gitlab-ee=14.4.1-ee.0
+Link: https://packages.gitlab.com/gitlab/gitlab-ee/packages/ubuntu/focal/gitlab-ee_14.4.1-ee.0_amd64.deb
+
+3. Add hosts ubuntu
+   - sudo vi /etc/hosts
+   - Thêm dòng: 192.168.232.128 gitlab.local
+
+4. Config gitlab với domain
+   - sudo vi /etc/gitlab/gitlab.rb
+   - external_url "http://gitlab.local"    : Chỉnh hosts
+   - sudo gitlab-ctl reconfigure           : apply config
+
+5. Account default
+   - Username : root
+   - Pass     : cat /etc/gitlab/initial_root_password
+
+6. Setting default 
+   - Bỏ tạo acc : Admin Area> General> Sign-up enabled
+   - Bỏ         : Admin Area> CI/CD> Default to Auto DevOps pipeline for all projects
+
+7. Đổi mật khẩu
