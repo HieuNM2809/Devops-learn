@@ -1,0 +1,62 @@
+https://devopsedu.vn/courses/devops-for-freshers/lesson/bai-16-gitlab-ci-continuous-deployment/
+
+1. Tải và cài đặt gitlab Runner
+    - sudo apt update
+    - curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh" | sudo bash
+    - sudo apt install gitlab-runner
+
+2. Check status Runner
+   - gitlab-runner -v
+
+3. Check users
+   - vi /etc/passwd
+
+4. Kết nối Gitlab Runner với Gitlab
+   4.1. Lấy thông tin CI-CD của project git
+       http://gitlab.local/root/shoeshop/-/settings/ci_cd
+   4.2.  Chạy lệnh config
+   - gitlab-runner register   : và điền các thông tin yêu cầu
+
+   Lưu ý:
+     - shell (chọn) : tương tác trực tiếp trên docker
+     - docker : tương tác trên mô trường độc lập
+
+5. Kiểm tra cấu hình config gitlab-runner
+   sudo vi /etc/gitlab-runner/config.toml
+
+   concurrent = 4    // số lượng dự án chạy đồng thời
+   check_interval = 0
+   connection_max_age = "15m0s"
+   shutdown_timeout = 0
+
+   [session_server]
+     session_timeout = 1800
+
+   [[runners]]
+     name = "LabGitlabCICD"
+     url = "http://gitlab.local/"
+     id = 1
+     token = "g3MkqF-HegDPYxQjNzFQ"
+     token_obtained_at = 2024-11-02T04:45:17Z
+     token_expires_at = 0001-01-01T00:00:00Z
+     executor = "shell"
+     [runners.custom_build_dir]
+     [runners.cache]
+       MaxUploadedArchiveSize = 0
+       [runners.cache.s3]
+       [runners.cache.gcs]
+       [runners.cache.azure]
+
+6. Chạy nền gitlab-runner
+   - Nohup : Chạy nền
+
+   nohup gitlab-runner run  \
+   --working-directory /home/gitlab-runner/ \
+   --config /etc/gitlab-runner/config.toml \
+   --service gitlab-runner  \
+   --user gitlab-runner 2>&1 &
+
+7. Kiển tra lại
+   - ps -ef| grep gitlab-runner
+   - Quay lại gitlab web để kiểm tra (http://gitlab.local/root/shoeshop/-/settings/ci_cd)
+
